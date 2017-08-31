@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Typography
+title:
 permalink: /typography/
 ---
 
@@ -153,4 +153,3 @@ permalink: /typography/
   </tr>
 </table>
 </div>
-
