@@ -14,21 +14,18 @@ A 9.0-ás verzió megjelenésével vált elérhetővé először a beépített r
 
 Először telepítsük mind a két szerverre a legfrissebb Postgresqlt. Ehhez szükségünk lesz a postgresql repository hozzáadására.
 
-{% highlight html %}
-{% raw %}{% highlight bash %}
+{% highlight bash %}
 echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' | tee /etc/apt/sources.list.d/postgresql.list
 wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
 apt-get update
 apt-get install -y postgresql-9.6 postgresql-contrib-9.6
 
 systemctl enable postgresql
-{% endhighlight %}{% endraw %}
 {% endhighlight %}
 
 A master szerver IP-je 192.168.10.10 lesz. Engedélyezzük az arcive módot. Így kezd a rendszer WAL szegmenseket generálni. Majd engedélyezzük ezek átvitelét.
 
-{% highlight html %}
-{% raw %}{% highlight bash %}
+{% highlight bash %}
 cd /etc/postgresql/9.6/main/
 nano postgresql.conf
 
@@ -40,23 +37,19 @@ archive_command = 'cp %p /var/lib/postgresql/9.6/main/archive/%f'
 max_wal_senders = 2
 wal_keep_segments = 10
 synchronous_standby_names = 'pgslave001'
-{% endhighlight %}{% endraw %}
 {% endhighlight %}
 
 Hozzuk létre a szükséges mappákat:
 
-{% highlight html %}
-{% raw %}{% highlight bash %}
+{% highlight bash %}
 mkdir -p /var/lib/postgresql/9.6/main/archive/
 chmod 700 /var/lib/postgresql/9.6/main/archive/
 chown -R postgres:postgres /var/lib/postgresql/9.6/main/archive/
-{% endhighlight %}{% endraw %}
 {% endhighlight %}
 
 Módosítsuk az hálózati elérési engedélyeket a postgresql beállításaiban.
 
-{% highlight html %}
-{% raw %}{% highlight bash %}
+{% highlight bash %}
 nano pg_hba.conf
 
 # Localhost
@@ -67,18 +60,15 @@ host    replication     replica          192.168.10.10/32            md5
 
 # PostgreSQL SLave IP-je
 host    replication     replica          192.168.10.11/32            md5
-{% endhighlight %}{% endraw %}
 {% endhighlight %}
 
 Hozzunklétre egy felhasználót a postgresqlben aminek a nevében vágbemegy az átvitel. A felhasználónév ''replica'' lesz a jelszó pedig 'aqwe123@'.
 
-{% highlight html %}
-{% raw %}{% highlight bash %}
+{% highlight bash %}
 systemctl restart postgresql
 
 su - postgres
 psql
 
 CREATE USER replica REPLICATION LOGIN ENCRYPTED PASSWORD 'aqwe123@';
-{% endhighlight %}{% endraw %}
 {% endhighlight %}
