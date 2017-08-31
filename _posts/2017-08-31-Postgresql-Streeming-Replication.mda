@@ -25,7 +25,7 @@ systemctl enable postgresql
 
 A master szerver IP-je 192.168.10.10 lesz. Engedélyezzük az arcive módot. Így kezd a rendszer WAL szegmenseket generálni. Majd engedélyezzük ezek átvitelét.
 
-{% highlight bash %}
+```bash
 cd /etc/postgresql/9.6/main/
 nano postgresql.conf
 
@@ -37,19 +37,19 @@ archive_command = 'cp %p /var/lib/postgresql/9.6/main/archive/%f'
 max_wal_senders = 2
 wal_keep_segments = 10
 synchronous_standby_names = 'pgslave001'
-{% endhighlight %}
+```
 
 Hozzuk létre a szükséges mappákat:
 
-{% highlight bash %}
+```bash
 mkdir -p /var/lib/postgresql/9.6/main/archive/
 chmod 700 /var/lib/postgresql/9.6/main/archive/
 chown -R postgres:postgres /var/lib/postgresql/9.6/main/archive/
-{% endhighlight %}
+```
 
 Módosítsuk az hálózati elérési engedélyeket a postgresql beállításaiban.
 
-{% highlight bash %}
+```bash
 nano pg_hba.conf
 
 # Localhost
@@ -60,15 +60,15 @@ host    replication     replica          192.168.10.10/32            md5
 
 # PostgreSQL SLave IP-je
 host    replication     replica          192.168.10.11/32            md5
-{% endhighlight %}
+```
 
 Hozzunklétre egy felhasználót a postgresqlben aminek a nevében vágbemegy az átvitel. A felhasználónév ''replica'' lesz a jelszó pedig 'aqwe123@'.
 
-{% highlight bash %}
+```bash
 systemctl restart postgresql
 
 su - postgres
 psql
 
 CREATE USER replica REPLICATION LOGIN ENCRYPTED PASSWORD 'aqwe123@';
-{% endhighlight %}
+```
