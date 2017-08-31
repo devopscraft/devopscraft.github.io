@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "Minio S3 kompatibili ObjectStorage"
+date:   2017-08-31
+author: DevOpsCraft
+categories: sysops
+tags:	ObjectStorage
+cover:  "/assets/instacode.png"
+---
+
+A minap találtam egy ObjectStorage-ot ami S3 kompatibilis és nagyon jól jött volna amikor S3 buket-ek tartalmát kellett mentenem.
+
+## Minio telepítése
+
+Egyszerűen letölthető a bin így könnyen használható szinte bármely Linux disztrón.
+
+```bash
+sudo apt-get update
+curl -O https://dl.minio.io/server/minio/release/linux-amd64/minio
+sudo chmod +x minio
+sudo mv minio /usr/local/bin
+```
+
+Biztonsági okokból ajánlott külön user nevében futtatni:
+
+```bash
+sudo useradd -r minio-user -s /sbin/nologin
+sudo chown minio-user:minio-user /usr/local/bin/minio
+```
+
+Ezután szükségünk lesz egy mappára, ahol a minio majd tárolja az adatait:
+
+```bash
+sudo mkdir /usr/local/share/minio
+sudo chown minio-user:minio-user /usr/local/share/minio
+```
+
+Készítsünk egy mappát az etc alatt a minio konfigurációjának és konfiguráljuk is fel.
+
+```bash
+sudo mkdir /etc/minio
+sudo chown minio-user:minio-user /etc/minio
+
+sudo nano /etc/default/minio
+MINIO_VOLUMES="/usr/local/share/minio/"
+MINIO_OPTS="-C /etc/minio --address 192.168.10.10:9000"
+```
+
+Amint látszik megadtuk az előzőekben létrehozott mappát ahol az adatokat fogja tárolni.
+A `-C` kapcsolóval meghatározzuk a konfig fájlok hejét.
+Az IP címet állítsuk a saját szerverünk címére.
+
+
+A könnyebb kezelhetőség érdekében érdemes telepíteni a start scriptet:
+
+```bash
+curl -O https://raw.githubusercontent.com/minio/minio-service/master/linux-systemd/minio.service
+sudo mv minio.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable minio
+```
+
+Minio szerver indítása:
+
+```bash
+sudo systemctl start minio
+sudo systemctl status minio
+```
+
+Már el is érjük a webfelületet: `https://example.com:9000`
