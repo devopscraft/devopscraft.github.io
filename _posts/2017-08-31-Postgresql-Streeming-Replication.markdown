@@ -14,6 +14,10 @@ A 9.0-ás verzió megjelenésével vált elérhetővé először a beépített r
 
 Először telepítsük mind a két szerverre a legfrissebb Postgresqlt. Ehhez szükségünk lesz a postgresql repository hozzáadására.
 
+{{ "{% highlight html linenos "}}%}
+<div>this is some preformatted code</div>
+{{ "{% endhighlight "}}%}
+
 {% highlight bash %}
 echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' | tee /etc/apt/sources.list.d/postgresql.list
 wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
