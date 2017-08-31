@@ -9,17 +9,17 @@ exclude:
   - "/vendor/"
 
 # Site settings
-title: Centrarium
-subtitle: "A simple yet classy theme for your Jekyll website or blog"
-email: blcentra@gmail.com
-name: Ben Centra
+title: DevOpsCraft
+subtitle: "DevOps SysOps Linux"
+email: devopscraft@gmail.com
+name: DevOpsCraft
 description: >
-  A simple yet classy theme for your Jekyll website or blog.
+  DevOps SysOps Linux.
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
-baseurl: "/centrarium" # the subpath of your site, e.g. /blog/
-url: "http://bencentra.github.io" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://devopscraft.github.io" # the base hostname & protocol for your site
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 
@@ -49,11 +49,15 @@ jekyll-archives:
 # Category descriptions (for archive pages)
 descriptions:
   - cat: jekyll
-    desc: "Posts describing Jekyll setup techniques."
+    desc: "jackyll leírások"
 
-  - cat: dummy
-    desc: "Just some placeholder posts, lorem ipsum and the rest."
+  - cat: SysOps
+    desc: "SysOps leírások"
 
+  - cat: DevOps
+    desc: "SysOps leírások"
+
+  - cat: Dummy
 # Social icons and sharing options
 #
 # Social settings are used in two places:
@@ -72,10 +76,10 @@ descriptions:
 social:
   - name: Twitter
     icon: twitter
-    username: TheBenCentra
-    url: https://twitter.com/TheBenCentra
+    username: devopscraft
+    url: https://twitter.com/devops_craft
     desc: Follow me on Twitter
-    share: true
+    share: false
 
   - name: Facebook
     icon: facebook
@@ -86,24 +90,24 @@ social:
 
   - name: GitHub
     icon: github
-    username: bencentra
-    url: https://github.com/bencentra
+    username: devopscraft
+    url: https://github.com/devopscraft
     desc: Fork me on GitHub
-    share: false
+    share: true
 
   - name: LinkedIn
     icon: linkedin
     username: Ben Centra
     url: https://www.linkedin.com/pub/ben-centra/47/769/60a
     desc: Connect with me on LinkedIn
-    share: true
+    share: false
 
   - name: Google+
     icon: google-plus
     username:
     url:
     desc: Add me to your Circles
-    share: true
+    share: false
 
   - name: YouTube
     icon: youtube
@@ -124,7 +128,7 @@ social:
     username:
     url:
     desc: Follow me on Pinterest
-    share: true
+    share: false
 
   - name: SoundCloud
     icon: soundcloud
