@@ -51,13 +51,13 @@ descriptions:
   - cat: jekyll
     desc: "jackyll leírások"
 
-  - cat: SysOps
+  - cat: sysops
     desc: "SysOps leírások"
 
-  - cat: DevOps
+  - cat: devops
     desc: "SysOps leírások"
 
-  - cat: Dummy
+  - cat: dummy
 # Social icons and sharing options
 #
 # Social settings are used in two places:
