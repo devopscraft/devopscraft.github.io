@@ -44,7 +44,7 @@ jekyll-archives:
   disqus_shortname: devopscraft
 
 # Google analytics
-# ga_tracking_id: "UA-XXXX-1"
+  ga_tracking_id: "UA-105605449-1"
 
 # Category descriptions (for archive pages)
 descriptions:
