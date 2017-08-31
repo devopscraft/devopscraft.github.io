@@ -12,7 +12,7 @@ exclude:
 title: DevOpsCraft
 subtitle: "A simple yet classy theme for your Jekyll website or blog"
 email: devopscraft@gmail.com
-name: Ben Centra
+name: devopscraft
 description: >
   A simple yet classy theme for your Jekyll website or blog.
 # Base URL of site (i.e. /blog). It should always start with a slash,
@@ -41,7 +41,7 @@ jekyll-archives:
     tag: '/tag/:name/'
 
 # Disqus comments
-# disqus_shortname: bencentra
+  disqus_shortname: devopscraft
 
 # Google analytics
 # ga_tracking_id: "UA-XXXX-1"
